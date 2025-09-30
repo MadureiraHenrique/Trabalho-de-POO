@@ -13,22 +13,19 @@ public class App {
         try {
             while(distanciaCarro1 < distancia || distanciaCarro2 < distancia) {
                 Thread.sleep(1000);
+                limparTela();
                 count++;
                 System.out.println("volta " + count);
-                int cache = 0;
-                System.out.println("--------------------");
-                cache = distanciaCarro1;
-                distanciaCarro1 += aumentarVelocidade();
-                animacao1 += animacao(distanciaCarro1 - cache);
+                System.out.println("-------------------------");
+                distanciaCarro1 += aumentarDistancia();
+                animacao1 = animacao(distanciaCarro1);
 
-                cache = distanciaCarro2;
-                distanciaCarro2 += aumentarVelocidade();
-                animacao2 += animacao(distanciaCarro2 - cache);
+                distanciaCarro2 += aumentarDistancia();
+                animacao2 = animacao(distanciaCarro2);
 
                 System.out.println(animacao1 + "#");
                 System.out.println(animacao2 + "#");
-                System.out.println("--------------------");
-                //limparTela();
+                System.out.println("-------------------------");
             }
     
             status(distanciaCarro1, distanciaCarro2);
@@ -39,7 +36,7 @@ public class App {
         System.out.println();
     }
 
-    public static int aumentarVelocidade() {
+    public static int aumentarDistancia() {
         Random random = new Random();
         return random.nextInt(3);
     }
@@ -58,13 +55,12 @@ public class App {
     }
     
     public static String animacao(int distanciaCarro) {
-        String acrescentar = "";
-        acrescentar = " ".repeat(distanciaCarro);
-        return acrescentar;
+        String animacao = " ".repeat(distanciaCarro);
+        return animacao;
     }
 
     public static void limparTela() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println();
         }
     }
