@@ -11,12 +11,13 @@ public class App {
         String animacao2 = "";
         
         try {
-            while(distanciaCarro1 < distancia || distanciaCarro2 < distancia) {
+            while(distanciaCarro1 < distancia && distanciaCarro2 < distancia) {
                 Thread.sleep(1000);
                 limparTela();
                 count++;
                 System.out.println("volta " + count);
-                System.out.println("-------------------------");
+                System.out.println(aumentarDistancia());
+                System.out.println("-----------------------");
                 distanciaCarro1 += aumentarDistancia();
                 animacao1 = animacao(distanciaCarro1);
 
@@ -25,7 +26,7 @@ public class App {
 
                 System.out.println(animacao1 + "#");
                 System.out.println(animacao2 + "#");
-                System.out.println("-------------------------");
+                System.out.println("-----------------------");
             }
     
             status(distanciaCarro1, distanciaCarro2);
@@ -38,7 +39,7 @@ public class App {
 
     public static int aumentarDistancia() {
         Random random = new Random();
-        return random.nextInt(3);
+        return random.nextInt(1, 4);
     }
 
     public static void status(int carro1, int carro2) {
