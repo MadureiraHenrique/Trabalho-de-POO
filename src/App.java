@@ -14,10 +14,10 @@ public class App {
 			limparTela();
 
 	    	println("Simulação Iniciada!");
-	    	println("-".repeat(distancia));
+	    	bordaDaCorrida(distancia);
             println("#");
 	    	println("#");
-	    	println("-".repeat(distancia));
+	    	bordaDaCorrida(distancia);
 
             while(distanciaCarro1 < distancia && distanciaCarro2 < distancia) {
                 Thread.sleep(1000);
@@ -25,7 +25,7 @@ public class App {
                 count++;
 
                 println("Volta " + count);
-                println("-".repeat(distancia));
+                bordaDaCorrida(distancia);
                 distanciaCarro1 += aumentarDistancia();
                 animacao1 = animacao(distanciaCarro1);
 
@@ -34,7 +34,7 @@ public class App {
 
                 println(animacao1 + "#");
                 println(animacao2 + "#");
-                println("-".repeat(distancia));
+                bordaDaCorrida(distancia);
             }
 
             status(distanciaCarro1, distanciaCarro2);
@@ -77,4 +77,8 @@ public class App {
 		System.out.println(o);
     }
 
+	public static void bordaDaCorrida(int distancia) {
+		println("-".repeat(distancia));
+	}
+	
 }
