@@ -1,3 +1,5 @@
+package entities;
+
 public class Carro {
     private final int id;
     private int velocidade;

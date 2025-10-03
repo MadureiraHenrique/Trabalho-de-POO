@@ -1,3 +1,5 @@
+package Utils;
+
 import java.util.Random;
 
 public class Utils {
@@ -9,14 +11,14 @@ public class Utils {
     public static void status(int carro1, int carro2) {
         System.out.println("\n(---> Status <---)");
         if (carro1 > carro2) {
-            System.out.println("Carro 1 Ganhou!");
+            System.out.println("entities.Carro 1 Ganhou!");
         } else if (carro2 > carro1) {
-            System.out.println("Carro 2 Ganhou!");
+            System.out.println("entities.Carro 2 Ganhou!");
         } else {
-            System.out.println("Carro 1 e Carro 2 Empataram!");
+            System.out.println("entities.Carro 1 e entities.Carro 2 Empataram!");
         }
-        System.out.println("Distancia do Carro 1 = " + carro1);
-        System.out.println("Distancia do Carro 2 = " + carro2);
+        System.out.println("Distancia do entities.Carro 1 = " + carro1);
+        System.out.println("Distancia do entities.Carro 2 = " + carro2);
     }
 
     public static String animacao(int distanciaCarro) {
@@ -28,7 +30,7 @@ public class Utils {
         System.out.println("\n".repeat(10));
     }
 
-    public static void bordaDaCorrida(int distancia) {
-        System.out.println("-".repeat(distancia));
+    public static String bordaDaCorrida(int distancia) {
+        return "-".repeat(distancia);
     }
 }

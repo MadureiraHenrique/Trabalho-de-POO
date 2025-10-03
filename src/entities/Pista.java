@@ -1,3 +1,5 @@
+package entities;
+
 public class Pista {
     private final int id;
     private final int comprimento;
@@ -13,5 +15,9 @@ public class Pista {
 
     public int getComprimento() {
         return comprimento;
+    }
+
+    public String bordaDaPista() {
+        return "-".repeat(this.comprimento);
     }
 }

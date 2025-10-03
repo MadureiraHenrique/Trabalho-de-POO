@@ -19,7 +19,7 @@ O objetivo do programa é simular uma corrida simples entre dois veículos, onde
 
 ### Regras do Jogo
 
-1.  **Veículos:** A simulação é entre dois veículos (Carro 1 e Carro 2).
+1.  **Veículos:** A simulação é entre dois veículos (entities.Carro 1 e entities.Carro 2).
 2.  **Distância Inicial:** A distância de ambos os carros é zero no início da corrida.
 3.  **Avanço:** A cada passo da simulação, um valor aleatório de avanço (entre 1 e 3) é sorteado para cada carro, e sua distância é atualizada.
 4.  **Representação:** A distância é representada na tela por uma sequência de espaços em branco, mostrando a posição de cada carro.
