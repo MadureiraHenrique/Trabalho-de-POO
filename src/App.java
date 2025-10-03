@@ -2,83 +2,51 @@ import java.util.Random;
 
 public class App {
     public static void main(String[] args) {
-        int distanciaCarro1 = 0, distanciaCarro2 = 0, count = 0, distancia = 20;
+        Carro carro1 = new Carro(1, 0, 0);
+        Carro carro2 = new Carro(2, 0, 0);
+        int count = 0;
 
-        String animacao1 = "", animacao2 = "";
+        Pista pista = new Pista(1, 20);
 
         try {
-	    	println("Carregando Simulação ...");
+            System.out.println("Carregando Simulação ...");
 
-	    	Thread.sleep(5000);
+	    	Thread.sleep(000);
 
-			limparTela();
+			Utils.limparTela();
 
-	    	println("Simulação Iniciada!");
-	    	bordaDaCorrida(distancia);
-            println("#");
-	    	println("#");
-	    	bordaDaCorrida(distancia);
+	    	System.out.println("Simulação Iniciada!");
+	    	Utils.bordaDaCorrida(pista.getComprimento());
+            System.out.println("#");
+	    	System.out.println("#");
+	    	Utils.bordaDaCorrida(pista.getComprimento());
 
-            while(distanciaCarro1 < distancia && distanciaCarro2 < distancia) {
-                Thread.sleep(1000);
-                limparTela();
+            while(carro1.getDistancia() < pista.getComprimento() && carro2.getDistancia() < pista.getComprimento()) {
+                Thread.sleep(000);
+                Utils.limparTela();
                 count++;
 
-                println("Volta " + count);
-                bordaDaCorrida(distancia);
-                distanciaCarro1 += aumentarDistancia();
-                animacao1 = animacao(distanciaCarro1);
+                System.out.println("Volta " + count);
+                Utils.bordaDaCorrida(pista.getComprimento());
 
-                distanciaCarro2 += aumentarDistancia();
-                animacao2 = animacao(distanciaCarro2);
+                carro1.setVelocidade(Utils.aumentarDistancia());
+                carro1.setDistancia(carro1.getDistancia() + carro1.getVelocidade());
 
-                println(animacao1 + "#");
-                println(animacao2 + "#");
-                bordaDaCorrida(distancia);
+                carro2.setVelocidade(Utils.aumentarDistancia());
+                carro2.setDistancia(carro2.getDistancia() + carro2.getVelocidade());
+
+                System.out.println(Utils.animacao(carro1.getDistancia()) + "#");
+                System.out.println(Utils.animacao(carro2.getDistancia()) + "#");
+                Utils.bordaDaCorrida(pista.getComprimento());
             }
 
-            status(distanciaCarro1, distanciaCarro2);
+            Utils.status(carro1.getDistancia(), carro2.getDistancia());
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            println("Thread interrompida durante o soninho, o erro é um tal de " + e.getMessage());
+            System.out.println("Thread interrompida durante o soninho, o erro é um tal de " + e.getMessage());
         }
 
-        println(" ");
+        System.out.println(" ");
     }
-
-    public static int aumentarDistancia() {
-        Random random = new Random();
-        return random.nextInt(1, 4);
-    }
-
-    public static void status(int carro1, int carro2) {
-        println("\n(---> Status <---)");
-        if (carro1 > carro2) {
-            println("Carro 1 Ganhou!");
-        } else if (carro2 > carro1) {
-            println("Carro 2 Ganhou!");
-        } else {
-            println("Carro 1 e Carro 2 Empataram!");
-        }
-        println("Distancia do Carro 1 = " + carro1);
-        println("Distancia do Carro 2 = " + carro2);
-    }
-
-    public static String animacao(int distanciaCarro) {
-        String animacao = " ".repeat(distanciaCarro);
-        return animacao;
-    }
-
-    public static void limparTela() {
-        println("\n".repeat(10));
-    }
-
-    public static void println(Object o) {
-		System.out.println(o);
-    }
-
-	public static void bordaDaCorrida(int distancia) {
-		println("-".repeat(distancia));
-	}
 	
 }
