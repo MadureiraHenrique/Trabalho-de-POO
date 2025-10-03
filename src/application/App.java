@@ -12,11 +12,10 @@ public class App {
 
         int count = 0;
 
-
         try {
             System.out.println("Carregando Simulação ...");
 
-	    	Thread.sleep(5000);
+	    	Thread.sleep(1000);
 
 			Utils.limparTela();
 
@@ -27,25 +26,26 @@ public class App {
             System.out.println(pista.bordaDaPista());
 
             while(carro1.getDistancia() < pista.getComprimento() && carro2.getDistancia() < pista.getComprimento()) {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 Utils.limparTela();
                 count++;
 
                 System.out.println("loop " + count);
                 System.out.println(pista.bordaDaPista());
 
-                carro1.setVelocidade(Utils.aumentarDistancia());
-                carro1.setDistancia(carro1.getDistancia() + carro1.getVelocidade());
+                carro1.setVelocidade(Utils.aumentarVelocidade());
+                carro1.setDistancia(carro1.aumentarDistancia());
 
-                carro2.setVelocidade(Utils.aumentarDistancia());
-                carro2.setDistancia(carro2.getDistancia() + carro2.getVelocidade());
+                carro2.setVelocidade(Utils.aumentarVelocidade());
+                carro2.setDistancia(carro2.aumentarDistancia());
 
                 System.out.println(Utils.animacao(carro1.getDistancia()) + "#");
                 System.out.println(Utils.animacao(carro2.getDistancia()) + "#");
+
                 System.out.println(pista.bordaDaPista());
             }
 
-            Utils.status(carro1.getDistancia(), carro2.getDistancia());
+            Utils.status(carro1, carro2);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println("Thread interrompida durante o soninho, o erro é um tal de " + e.getMessage());

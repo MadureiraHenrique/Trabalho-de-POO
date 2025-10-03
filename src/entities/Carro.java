@@ -30,4 +30,8 @@ public class Carro {
     public void setDistancia(int distancia) {
         this.distancia = distancia;
     }
+
+    public int aumentarDistancia() {
+        return this.distancia + this.velocidade;
+    }
 }

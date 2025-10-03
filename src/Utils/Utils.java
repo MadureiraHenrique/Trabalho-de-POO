@@ -1,29 +1,30 @@
 package Utils;
 
+import entities.Carro;
+
 import java.util.Random;
 
 public class Utils {
-    public static int aumentarDistancia() {
+    public static int aumentarVelocidade() {
         Random random = new Random();
         return random.nextInt(1, 4);
     }
 
-    public static void status(int carro1, int carro2) {
+    public static void status(Carro carro1, Carro carro2) {
         System.out.println("\n(---> Status <---)");
-        if (carro1 > carro2) {
-            System.out.println("entities.Carro 1 Ganhou!");
-        } else if (carro2 > carro1) {
-            System.out.println("entities.Carro 2 Ganhou!");
+        if (carro1.getDistancia() > carro2.getDistancia()) {
+            System.out.println("Carro " + carro1.getId() + " Ganhou!");
+        } else if (carro2.getDistancia() > carro1.getDistancia()) {
+            System.out.println("Carro " + carro2.getId() + " Ganhou!");
         } else {
-            System.out.println("entities.Carro 1 e entities.Carro 2 Empataram!");
+            System.out.println("Carro " + carro1.getId() + " e Carro " + carro2.getId() + " Empataram!");
         }
-        System.out.println("Distancia do entities.Carro 1 = " + carro1);
-        System.out.println("Distancia do entities.Carro 2 = " + carro2);
+        System.out.println("Distancia do Carro 1 = " + carro1.getDistancia());
+        System.out.println("Distancia do Carro 2 = " + carro2.getDistancia());
     }
 
     public static String animacao(int distanciaCarro) {
-        String animacao = " ".repeat(distanciaCarro);
-        return animacao;
+        return " ".repeat(distanciaCarro);
     }
 
     public static void limparTela() {
