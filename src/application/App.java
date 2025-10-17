@@ -1,56 +1,76 @@
 package application;
 
-import Utils.Utils;
+import java.util.Scanner;
+
+import Utils.Utilidades;
 import entities.Carro;
 import entities.Pista;
 
 public class App {
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
         Pista pista = new Pista(1, 20);
-        Carro carro1 = new Carro(1, 0, 0);
-        Carro carro2 = new Carro(2, 0, 0);
-
+        
         int count = 0;
-
+        
         try {
+            System.out.println("--> Corrida de Carros <--");
+            System.out.print("Quantos carros são? ");
+            int quantidadeDeCarros = scan.nextInt();
+            
+            Carro[] carro = new Carro[quantidadeDeCarros];
+            int[] distancia = new int[quantidadeDeCarros];
+
+            for (int novoId = 0; novoId < quantidadeDeCarros; novoId++) {
+                Carro novoCarro = new Carro(novoId, 0, 0);
+                carro[novoId] = novoCarro;
+            }
+
+            System.out.println("São " + quantidadeDeCarros + " Carros.");
+            
             System.out.println("Carregando Simulação ...");
-
+            
 	    	Thread.sleep(1000);
-
-			Utils.limparTela();
-
+            
+			Utilidades.limparTela();
+            
 	    	System.out.println("Simulação Iniciada!");
             System.out.println(pista.bordaDaPista());
-            System.out.println("#");
-	    	System.out.println("#");
+	    	System.out.println("#".repeat(quantidadeDeCarros));
             System.out.println(pista.bordaDaPista());
-
-            while(carro1.getDistancia() < pista.getComprimento() && carro2.getDistancia() < pista.getComprimento()) {
+            
+            while(!Utilidades.verificador(carro, pista.getComprimento())) { // aqui vai ter um verificador(carro[]) que retorna true se algum carro chegar ao final.    
                 Thread.sleep(500);
-                Utils.limparTela();
+                Utilidades.limparTela();
                 count++;
-
+                
                 System.out.println("loop " + count);
                 System.out.println(pista.bordaDaPista());
+                
+                // aqui vai ter um loop(foreach) para setar a velocidade e a distância.
+                for (Carro carros1 : carro) {
+                    carros1.setDistancia(Utilidades.aumentarVelocidade());
+                    carros1.setVelocidade(carros1.aumentarDistancia());
+                }
 
-                carro1.setVelocidade(Utils.aumentarVelocidade());
-                carro1.setDistancia(carro1.aumentarDistancia());
-
-                carro2.setVelocidade(Utils.aumentarVelocidade());
-                carro2.setDistancia(carro2.aumentarDistancia());
-
-                System.out.println(Utils.animacao(carro1.getDistancia()) + "#");
-                System.out.println(Utils.animacao(carro2.getDistancia()) + "#");
+                // aqui vai ter um loop(foreach) para mostrar todas as animações.
+                for (Carro carros2 : carro) {
+                    distancia[carros2.getId()] += carros2.getDistancia();
+                    System.out.println(Utilidades.animacao(distancia[carros2.getId()]) + "#");
+                    carros2.setDistancia(distancia[carros2.getId()]);
+                }
 
                 System.out.println(pista.bordaDaPista());
             }
 
-            Utils.status(carro1, carro2);
+            Utilidades.status(carro);
+
+            scan.close();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println("Thread interrompida durante o soninho, o erro é um tal de " + e.getMessage());
         }
-
+        
         System.out.println(" ");
     }
 	

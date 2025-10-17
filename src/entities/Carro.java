@@ -1,9 +1,11 @@
 package entities;
 
 public class Carro {
-    private final int id;
+    private int id;
     private int velocidade;
     private int distancia;
+
+    public Carro() {}
 
     public Carro(int id, int velocidade, int distancia) {
         this.id = id;
@@ -13,6 +15,10 @@ public class Carro {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getVelocidade() {
